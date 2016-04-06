@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d4c72fb8d3a4e838f824c0853ca9e92" Name="Diagram1" >
+        <EntityTypeShape EntityType="FLPeopleProModel.Buildings" Width="1.5" PointX="1.125" PointY="2.75" />
+        <EntityTypeShape EntityType="FLPeopleProModel.Departments" Width="1.5" PointX="3.5" PointY="2.5" />
+        <EntityTypeShape EntityType="FLPeopleProModel.Employees" Width="1.5" PointX="5.75" PointY="2.5" />
+        <AssociationConnector Association="FLPeopleProModel.BuildingsDepartments" />
+        <AssociationConnector Association="FLPeopleProModel.DepartmentsEmployees" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

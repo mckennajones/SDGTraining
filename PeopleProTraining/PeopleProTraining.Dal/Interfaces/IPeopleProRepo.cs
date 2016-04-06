@@ -18,6 +18,8 @@ namespace PeopleProTraining.Dal.Interfaces
         Employee GetEmployee(Func<Employee, bool> predicate);
         Employee GetEmployee(int id);
         #endregion
+
+
         #endregion
 
     }

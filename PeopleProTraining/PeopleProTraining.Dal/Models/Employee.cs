@@ -16,9 +16,10 @@ namespace PeopleProTraining.Dal.Models
         public int Id;
 
         [Required]
-        public string FirstName;
+        public string FName;
+        public string LName;
+        public int DepartmentId;
 
     }
-
 
 }

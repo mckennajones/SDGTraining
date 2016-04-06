@@ -44,6 +44,49 @@ namespace PeopleProTraining.Dal.Infrastructure
         }
 
         #endregion
+
+        #region departments
+        public IQueryable<Department> getDepartments()
+        {
+            return p_context.Departments;
+        }
+
+        public IEnumerable<Department> getDepartments(Func<Department, bool> predicate)
+        {
+            return p_context.Departments.Where(predicate);
+        }
+
+        public Department GetDepartment(Func<Department, bool> predicate)
+        {
+            return getDepartments().SingleOrDefault(predicate);
+        }
+        public Department GetDepartment(int id)
+        {
+            return GetDepartment(t => t.Id == id);
+        }
+        #endregion
+
+        #region buildings
+        public IQueryable<Building> getBuildings()
+        {
+            return p_context.Buildings;
+        }
+
+        public IEnumerable<Building> getBuildings(Func<Building, bool> predicate)
+        {
+            return p_context.Buildings.Where(predicate);
+        }
+
+        public Building GetBuilding(Func<Building, bool> predicate)
+        {
+            return getBuildings().SingleOrDefault(predicate);
+        }
+        public Department GetBuilding(int id)
+        {
+            return GetDepartment(t => t.Id == id);
+        }
+        #endregion
+
         #endregion
 
 
