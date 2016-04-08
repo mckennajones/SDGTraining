@@ -12,137 +12,130 @@ using PeopleProTraining.Dal.Interfaces;
 
 namespace PeopleProTraining.Controllers
 {
-    public class EmployeesController : Controller
+    public class BuildingsController : Controller
     {
         private IPeopleProRepo p_repo;
 
-        public EmployeesController() : this (new PeopleProRepo()) { } 
+        public BuildingsController() : this (new PeopleProRepo()) { }
 
-        public EmployeesController(IPeopleProRepo newRepo)
+        public BuildingsController(IPeopleProRepo newRepo)
         {
             p_repo = newRepo;
         }
-
-        // GET: Employees
+        // GET: Buildings
         public ActionResult Index()
         {
-            var employees = p_repo.GetEmployees().ToList();
-            return View(employees);
+            IEnumerable<Building> buildings = p_repo.GetBuildings();
+
+            if (buildings == null)
+            {
+                return RedirectToAction("Create");
+            }
+
+            // Paginate buildings here, what if there are a bunch? IPagedList<T>
+            //var buildings = p_repo.GetBuildings().ToList();
+            return View(buildings);
         }
 
-        // GET: Employees/Details/5
+        // GET: Buildings/Details/5
         public ActionResult Details(int? id)
         {
             if (!id.HasValue)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Employee employee = p_repo.GetEmployee(id.Value);
-
-            if (employee == null)
+            Building building = p_repo.GetBuilding(id.Value);
+            if (building == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(building);
         }
 
-        // GET: Employees/Create
+        // GET: Buildings/Create
         public ActionResult Create()
         {
-            ViewBag.DepartmentId = new SelectList(p_repo.GetDepartments(), "Id", "Name");
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Buildings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FName,LName,DepartmentId")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Address")] Building building)
         {
-            if(employee == null)
+            if(building == null)
             {
                 return RedirectToAction("Create");
             }
             if (ModelState.IsValid)
             {
-                p_repo.SaveEmployee(employee);
+                p_repo.SaveBuilding(building);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartmentId = new SelectList(p_repo.GetDepartments(), "Id", "Name", employee.DepartmentId);
-            return View(employee);
+            //view bag?
+
+            return View(building);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Buildings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = p_repo.GetEmployee(id.Value);
-            if (employee == null)
+            Building building = p_repo.GetBuilding(id.Value);
+            if (building == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentId = new SelectList(p_repo.GetDepartments(), "Id", "Name", employee.DepartmentId);
-            return View(employee);
+            return View(building);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Buildings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FName,LName,DepartmentId")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Address")] Building building)
         {
-            if(employee == null)
+            if(building == null)
             {
                 return RedirectToAction("Edit");
             }
             if (ModelState.IsValid)
             {
-                p_repo.SaveEmployee(employee);
+                p_repo.SaveBuilding(building);
                 return RedirectToAction("Index");
             }
-
-            ViewBag.DepartmentId = new SelectList(p_repo.GetDepartments(), "Id", "Name", employee.DepartmentId);
-            return View(employee);
-            /*
-            if (ModelState.IsValid)
-            {
-                p_repo.Entry(employee).State = EntityState.Modified;
-                p_repo.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.DepartmentId = new SelectList(p_repo.GetDepartments(), "Id", "Name", employee.DepartmentId);
-            return View(employee);*/
+            return View(building);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Buildings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = p_repo.GetEmployee(id.Value);
-            if (employee == null)
+            Building building = p_repo.GetBuilding(id.Value);
+            if (building == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(building);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Buildings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = p_repo.GetEmployee(id);
-            p_repo.DeleteEmployee(employee);
+            Building building = p_repo.GetBuilding(id);
+            p_repo.DeleteBuilding(building);
             return RedirectToAction("Index");
         }
 

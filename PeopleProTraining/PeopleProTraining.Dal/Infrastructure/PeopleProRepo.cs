@@ -43,48 +43,96 @@ namespace PeopleProTraining.Dal.Infrastructure
             return GetEmployee(t => t.Id == id);
         }
 
+        public void SaveEmployee(Employee employee)
+        {
+            DoSave(p_context.Employees, employee, employee.Id, e => e.Id == employee.Id);
+        }
+
+        public void DeleteEmployee(Employee employee)
+        {
+            if (employee == null || employee.Id <= 0)
+            {
+                return;
+            }
+
+            p_context.Employees.Remove(employee);
+            p_context.SaveChanges();
+        }
         #endregion
 
         #region departments
-        public IQueryable<Department> getDepartments()
+        public IQueryable<Department> GetDepartments()
         {
             return p_context.Departments;
         }
 
-        public IEnumerable<Department> getDepartments(Func<Department, bool> predicate)
+        public IEnumerable<Department> GetDepartments(Func<Department, bool> predicate)
         {
             return p_context.Departments.Where(predicate);
         }
 
         public Department GetDepartment(Func<Department, bool> predicate)
         {
-            return getDepartments().SingleOrDefault(predicate);
+            return GetDepartments().SingleOrDefault(predicate);
         }
         public Department GetDepartment(int id)
         {
             return GetDepartment(t => t.Id == id);
         }
+
+        public void SaveDepartment(Department department)
+        {
+            DoSave(p_context.Departments, department, department.Id, d => d.Id == department.Id);
+        }
+
+        public void DeleteDepartment(Department department)
+        {
+            if (department == null || department.Id <= 0)
+            {
+                return;
+            }
+
+            p_context.Departments.Remove(department);
+            p_context.SaveChanges();
+        }
         #endregion
 
         #region buildings
-        public IQueryable<Building> getBuildings()
+        public IQueryable<Building> GetBuildings()
         {
             return p_context.Buildings;
         }
 
-        public IEnumerable<Building> getBuildings(Func<Building, bool> predicate)
+        public IEnumerable<Building> GetBuildings(Func<Building, bool> predicate)
         {
             return p_context.Buildings.Where(predicate);
         }
 
         public Building GetBuilding(Func<Building, bool> predicate)
         {
-            return getBuildings().SingleOrDefault(predicate);
+            return GetBuildings().SingleOrDefault(predicate);
         }
-        public Department GetBuilding(int id)
+        public Building GetBuilding(int id)
         {
-            return GetDepartment(t => t.Id == id);
+            return GetBuilding(t => t.Id == id);
         }
+
+        public void SaveBuilding(Building building)
+        {
+            DoSave(p_context.Buildings, building, building.Id, b => b.Id == building.Id);
+        }
+
+        public void DeleteBuilding(Building building)
+        {
+            if (building == null || building.Id <= 0)
+            {
+                return;
+            }
+
+            p_context.Buildings.Remove(building);
+            p_context.SaveChanges();
+        }
+
         #endregion
 
         #endregion
@@ -159,7 +207,6 @@ namespace PeopleProTraining.Dal.Infrastructure
                 }
             }
         }
-
         #endregion
 
     }
