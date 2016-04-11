@@ -11,6 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleProTraining.Core", "P
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PeopleProTraining.Schema", "PeopleProTraining.Schema\PeopleProTraining.Schema.sqlproj", "{1366FAD8-40BA-48B1-94A2-5AB692133574}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleProTesting", "PeopleProTesting\PeopleProTesting.csproj", "{122BA29B-280D-40E1-A33A-B452762FEE6F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D101C0E-0749-4F64-807F-696B03800D9A} = {5D101C0E-0749-4F64-807F-696B03800D9A}
+		{5571347E-5899-4472-9B26-4F19778302F9} = {5571347E-5899-4472-9B26-4F19778302F9}
+		{5435FDD8-FA28-4307-BEFF-019DDF8C3397} = {5435FDD8-FA28-4307-BEFF-019DDF8C3397}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +42,10 @@ Global
 		{1366FAD8-40BA-48B1-94A2-5AB692133574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1366FAD8-40BA-48B1-94A2-5AB692133574}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1366FAD8-40BA-48B1-94A2-5AB692133574}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{122BA29B-280D-40E1-A33A-B452762FEE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122BA29B-280D-40E1-A33A-B452762FEE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122BA29B-280D-40E1-A33A-B452762FEE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122BA29B-280D-40E1-A33A-B452762FEE6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
