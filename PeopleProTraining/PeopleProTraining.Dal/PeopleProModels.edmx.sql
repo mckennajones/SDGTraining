@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/06/2016 13:53:46
+-- Date Created: 04/11/2016 09:39:23
 -- Generated from EDMX file: C:\Users\jonesmck\Source\Repos\SDGTraining\PeopleProTraining\PeopleProTraining.Dal\PeopleProModels.edmx
 -- --------------------------------------------------
 
@@ -17,6 +17,12 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_BuildingDepartment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Departments] DROP CONSTRAINT [FK_BuildingDepartment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DepartmentEmployee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Employees] DROP CONSTRAINT [FK_DepartmentEmployee];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -38,7 +44,7 @@ GO
 
 -- Creating table 'Buildings'
 CREATE TABLE [dbo].[Buildings] (
-    [Id] int  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Address] nvarchar(max)  NOT NULL
 );
@@ -46,7 +52,7 @@ GO
 
 -- Creating table 'Departments'
 CREATE TABLE [dbo].[Departments] (
-    [Id] int  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [RoomNumber] int  NOT NULL,
     [BuildingId] int  NOT NULL
@@ -55,7 +61,7 @@ GO
 
 -- Creating table 'Employees'
 CREATE TABLE [dbo].[Employees] (
-    [Id] int  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [FName] nvarchar(max)  NOT NULL,
     [LName] nvarchar(max)  NOT NULL,
     [DepartmentId] int  NOT NULL

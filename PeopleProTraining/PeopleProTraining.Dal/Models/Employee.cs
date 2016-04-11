@@ -14,10 +14,12 @@ namespace PeopleProTraining.Dal.Models
     public class EmployeeMetaData
     {
         public int Id;
-
+        [Display(Name = "First Name")]
         [Required]
         public string FName;
+        [Display(Name = "Last Name")]
         public string LName;
+        [Display(Name = "Department")]
         public int DepartmentId;
 
     }

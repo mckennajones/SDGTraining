@@ -1,31 +1,29 @@
-﻿@model IEnumerable<PeopleProTraining.Dal.Models.Employee>
+﻿@model IEnumerable<PeopleProTraining.Dal.Models.Department>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Employees</h2>
+<h2>Departments</h2>
 <ul class="nav nav-tabs">
     <li><a href="/">Home</a></li>
     <li><a href="/buildings">Buildings</a></li>
-    <li><a href="/departments">Departments</a></li>
-    <li class="active"><a href="/employees">Employees</a></li>
+    <li class="active"><a href="/departments">Departments</a></li>
+    <li><a href="/employees">Employees</a></li>
 </ul>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Department.Name)
+            @Html.DisplayNameFor(model => model.BuildingId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FName)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LName)
+            @Html.DisplayNameFor(model => model.RoomNumber)
         </th>
         <th></th>
     </tr>
@@ -33,13 +31,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Department.Name)
+            @Html.DisplayFor(modelItem => item.Building.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FName)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LName)
+            @Html.DisplayFor(modelItem => item.RoomNumber)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -4,41 +4,73 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Buildings</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-    </tr>
+<ul class="nav nav-tabs">
+    <li><a href="/">Home</a></li>
+    <li class="active"><a href="/buildings">Buildings</a></liclass="active">
+    <li><a href="/departments">Departments</a></li>
+    <li><a href="/employees">Employees</a></li>
+</ul>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@{
+    var building = new PeopleProTraining.Dal.Models.Building();
 }
 
+<div>
+    @Html.EditorFor(m => building)
+</div>
+<table class="table" id="buildingTable">
+    <thead>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_BuildingRow", item)
+        }
+    </tbody>
+
+
 </table>
+
+<script type="text/javascript">
+    function addBuilding() {
+        var name = $("#building_Name").val();
+        var address = $("#building_Address").val();
+        var postdata = { Name: name, Address: address };
+
+        $.ajax({
+            url: "/Buildings/CreateAjax",
+            type: 'post',
+            data: postdata,
+            success: function (result) {
+                result = $(result)[0];
+                console.log(result);
+                $("#buildingTable").append(result);
+            },
+            failure: function (request, status, error) {
+                console.log(status);
+                console.log(error);
+            },
+            error: function (request, status, error) {
+                console.log(status);
+                console.log(error);
+            }
+        })
+    }
+
+</script>

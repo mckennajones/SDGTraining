@@ -13,10 +13,13 @@ namespace PeopleProTraining.Dal.Models
     }
     public class DepartmentMetaData
     {
+        [Display(Name = "Building")]
+        public int BuildingId;
         public int Id;
-
+        [Display(Name = "Deparment")]
         [Required]
         public string Name;
+        [Display(Name = "Room #")]
         public int RoomNumber;
     }
 }
