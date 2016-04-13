@@ -10,8 +10,10 @@ namespace PeopleProTesting.Controllers
         [TestMethod]
         public void TestDetailsView()
         {
+            int? id;
+            id = 2;
             var controller = new BuildingsController();
-            var result = controller.Details(2) as ViewResult;
+            var result = controller.Details(id) as ViewResult;
             Assert.AreEqual("Details", result.ViewName);
         }
     }

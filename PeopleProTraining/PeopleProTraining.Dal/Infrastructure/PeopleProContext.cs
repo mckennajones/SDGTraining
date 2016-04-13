@@ -11,8 +11,10 @@ namespace PeopleProTraining.Dal.Infrastructure
 {
     public class PeopleProContext : DbContext, IPeopleProContext
     {
-        public PeopleProContext() : base("name=PeopleProTrainingDB") {
-
+        public PeopleProContext() : base("PeopleProTrainingDB") {
+            // There's probably a better way to do this...
+            var ensureDLLIsCopied =
+                System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
         public IDbSet<Employee> Employees { get; set; }
 
