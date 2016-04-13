@@ -92,10 +92,7 @@ namespace PeopleProTraining.Controllers
                 p_repo.SaveBuilding(building);
                 return PartialView("_BuildingRow", building);
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+           
             return PartialView("_BuildingRow", building);
 
         }

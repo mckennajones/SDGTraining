@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PeopleProTesting</RootNamespace>
     <AssemblyName>PeopleProTesting</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,7 +36,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -52,6 +59,27 @@
   <ItemGroup>
     <Compile Include="BuildingsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PeopleProTraining.Core\PeopleProTraining.Core.csproj">
+      <Project>{5435fdd8-fa28-4307-beff-019ddf8c3397}</Project>
+      <Name>PeopleProTraining.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PeopleProTraining.Dal\PeopleProTraining.Dal.csproj">
+      <Project>{5d101c0e-0749-4f64-807f-696b03800d9a}</Project>
+      <Name>PeopleProTraining.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PeopleProTraining.Schema\PeopleProTraining.Schema.sqlproj">
+      <Project>{1366fad8-40ba-48b1-94a2-5ab692133574}</Project>
+      <Name>PeopleProTraining.Schema</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PeopleProTraining\PeopleProTraining.csproj">
+      <Project>{5571347e-5899-4472-9b26-4f19778302f9}</Project>
+      <Name>PeopleProTraining</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

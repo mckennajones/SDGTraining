@@ -53,6 +53,21 @@
         var address = $("#building_Address").val();
         var postdata = { Name: name, Address: address };
 
+        if (name == "" && address == "") {
+            $('#nameError').text('Please enter a username');
+            $('#addressError').text('Please enter an address');
+            return false;
+        }
+        if (name == "" && address != "") {
+            $('#addressError').empty();
+            $('#nameError').text('Please enter a username');
+            return false;
+        }
+        if (address == "" && name != "") {
+            $('#nameError').empty();
+            $('#addressError').text('Please enter an address');
+            return false;
+        }
         $.ajax({
             url: "/Buildings/CreateAjax",
             type: 'post',
@@ -60,6 +75,8 @@
             success: function (result) {
                 result = $(result)[0];
                 console.log(result);
+                $('#nameError').empty();
+                $('#addressError').empty();
                 $("#buildingTable").append(result);
             },
             failure: function (request, status, error) {

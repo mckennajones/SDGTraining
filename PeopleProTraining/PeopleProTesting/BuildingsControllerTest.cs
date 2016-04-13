@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PeopleProTesting.Controllers;
+using PeopleProTraining.Controllers;
 
 namespace PeopleProTesting.Controllers
 {
@@ -8,9 +8,11 @@ namespace PeopleProTesting.Controllers
     public class BuildingsControllerTest
     {
         [TestMethod]
-        public void TestCreateView()
+        public void TestDetailsView()
         {
             var controller = new BuildingsController();
+            var result = controller.Details(2) as ViewResult;
+            Assert.AreEqual("Details", result.ViewName);
         }
     }
 }
